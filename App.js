@@ -1,34 +1,19 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import Home from './src/views/Home';
+import Library from './src/views/Library';
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#E0e0e0',
-    padding: 15,
-  },
-});
+const Stack = createStackNavigator();
 
 const App = () => (
-  <SafeAreaView>
-    <View style={styles.container}>
-      <Text>Hola mundo</Text>
-    </View>
-  </SafeAreaView>
+  <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} options={{title: 'Inicio'}} />
+      <Stack.Screen name="Library" component={Library} />
+    </Stack.Navigator>
+  </NavigationContainer>
 );
 
 export default App;
