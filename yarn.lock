@@ -1013,6 +1013,11 @@
     color "^3.1.2"
     react-native-iphone-x-helper "^1.2.1"
 
+"@scarf/scarf@^1.0.0":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@scarf/scarf/-/scarf-1.0.5.tgz#accee0bce88a9047672f7c8faf3cada59c996b81"
+  integrity sha512-9WKaGVpQH905Aqkk+BczFEeLQxS07rl04afFRPUG9IcSlOwmo5EVVuuNu0d4M9LMYucObvK0LoAe+5HfMW2QhQ==
+
 "@types/babel__core@^7.1.0":
   version "7.1.7"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.7.tgz#1dacad8840364a57c98d0dd4855c6dd3752c6b89"
@@ -5065,6 +5070,11 @@ react-native-gesture-handler@^1.6.1:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
+react-native-ionicons@^5.0.0-rc:
+  version "5.0.0-rc"
+  resolved "https://registry.yarnpkg.com/react-native-ionicons/-/react-native-ionicons-5.0.0-rc.tgz#07e96279ddaa789c15a14564c091937cb33eba91"
+  integrity sha512-sxGRilnejot/n1GFwUrAzOgZeF9sHJzpV6AcwQKR8q5U9k+ZCgDHq5ajrSn82A4b5TDv6F0aPJTDB2/9/EuVcw==
+
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz#645e2ffbbb49e80844bb4cbbe34a126fda1e6772"
@@ -5125,6 +5135,14 @@ react-native@0.62.2:
     stacktrace-parser "^0.1.3"
     use-subscription "^1.0.0"
     whatwg-fetch "^3.0.0"
+
+react-query@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/react-query/-/react-query-1.5.2.tgz#955d20ee2f3418476e9ab1080b54ccbc73018858"
+  integrity sha512-dXN75mZiF3mBR2HAPBpsNvltPAW8MwLn/psKwjtippEBMoSa2Cqy7JxizAY23cKvXA0551RIsp5W01GNh/vw8w==
+  dependencies:
+    "@scarf/scarf" "^1.0.0"
+    ts-toolbelt "^6.4.2"
 
 react-refresh@^0.4.0:
   version "0.4.2"
@@ -6081,6 +6099,11 @@ tr46@^1.0.1:
   integrity sha1-qLE/1r/SSJUZZ0zN5VujaTtwbQk=
   dependencies:
     punycode "^2.1.0"
+
+ts-toolbelt@^6.4.2:
+  version "6.9.0"
+  resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-6.9.0.tgz#49b0f9a398f3140830a5c68650544def828eb304"
+  integrity sha512-mFadvi7O2t/MMGh44mFUm3s0QyMrfIs7W7We06Lo6e1oD4PyXcfYQykoWjhXDwS7+7rOwg3VPnGBowIugZTY3g==
 
 tslib@^1.8.1, tslib@^1.9.0:
   version "1.11.1"

@@ -20,6 +20,7 @@
 		6D35F56FF701D132D0E60CEC /* libPods-Librarify-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77292A75405BC43B7E384EC3 /* libPods-Librarify-tvOS.a */; };
 		797445DD054F346044C0B370 /* libPods-Librarify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C613F8300C8B0890C0EA601 /* libPods-Librarify.a */; };
 		E17EEDA90ABC43F80AB6F937 /* libPods-Librarify-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F42F8092D5752AD8C32F3D7C /* libPods-Librarify-tvOSTests.a */; };
+		CFE4F4CEBF2849D5A080BB5B /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35EC8602716D43A8B59C5EC8 /* Ionicons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F42F8092D5752AD8C32F3D7C /* libPods-Librarify-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Librarify-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD538EFB7C2E2DD9AE0F1479 /* Pods-Librarify-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Librarify-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Librarify-tvOS/Pods-Librarify-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		35EC8602716D43A8B59C5EC8 /* Ionicons.ttf */ = {isa = PBXFileReference; name = "Ionicons.ttf"; path = "../node_modules/react-native-ionicons/fonts/Ionicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				75C4F30BDE3D1A415CAE5906 /* Pods */,
+				D36189553CA14432B2DFE7C3 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -197,6 +200,15 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		D36189553CA14432B2DFE7C3 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				35EC8602716D43A8B59C5EC8 /* Ionicons.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -340,6 +352,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				CFE4F4CEBF2849D5A080BB5B /* Ionicons.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
