@@ -21,12 +21,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const IMAGE_URL = 'https://picsum.photos/200/75';
 export default function BookListItem({book, onPress}) {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
-        <Image source={{uri: IMAGE_URL}} style={styles.image} />
+        {book.image && (
+          <Image source={{uri: book.image}} style={styles.image} />
+        )}
         <Text>{book.title}</Text>
         <Icon name="chevron-forward-outline" style={styles.icon} />
       </View>
