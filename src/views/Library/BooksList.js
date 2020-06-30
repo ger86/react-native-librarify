@@ -1,26 +1,18 @@
 import React from 'react';
-import {useQuery} from 'react-query';
 import {FlatList, Text, View} from 'react-native';
 import BookListItem from '../../components/Book/BookListItem';
-
-const GET_BOOKS = 'GET_BOOKS';
-
-async function fetchData() {
-  const response = await fetch('http://127.0.0.1:8000/api/books');
-  const json = await response.json();
-  return json;
-}
+import useLibraryContext from '../../hooks/useLibraryContext';
 
 export default function BooksList({navigation}) {
   function handleOnPress() {
     navigation.navigate('BookDetail');
   }
 
-  const {status, data} = useQuery(GET_BOOKS, fetchData);
+  const {isSuccess, isLoading, books} = useLibraryContext();
   return (
     <View>
       <FlatList
-        data={status === 'success' ? data : []}
+        data={isSuccess ? books : []}
         renderItem={({item}) => (
           <BookListItem book={item} onPress={handleOnPress} />
         )}
@@ -31,7 +23,7 @@ export default function BooksList({navigation}) {
           </View>
         }
         ListEmptyComponent={
-          <View>{status === 'loading' && <Text>Cargando libros...</Text>}</View>
+          <View>{isLoading && <Text>Cargando libros...</Text>}</View>
         }
       />
     </View>

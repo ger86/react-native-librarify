@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {LibraryContextProvider} from './src/contexts/LibraryContext';
 import BooksList from './src/views/Library/BooksList';
 import BookDetail from './src/views/Library/BookDetail';
 import AddBook from './src/views/AddBook/AddBook';
@@ -24,12 +25,14 @@ function LibraryStackScreen() {
 }
 
 const App = () => (
-  <NavigationContainer>
-    <Tab.Navigator>
-      <Tab.Screen name="LibraryTab" component={LibraryStackScreen} />
-      <Tab.Screen name="AddBookTab" component={AddBook} />
-    </Tab.Navigator>
-  </NavigationContainer>
+  <LibraryContextProvider>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="LibraryTab" component={LibraryStackScreen} />
+        <Tab.Screen name="AddBookTab" component={AddBook} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  </LibraryContextProvider>
 );
 
 export default App;

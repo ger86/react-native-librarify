@@ -7,7 +7,8 @@ import {
   StyleSheet,
   Text,
 } from 'react-native';
-import {useMutation, queryCache} from 'react-query';
+import {useMutation} from 'react-query';
+import useLibraryContext from '../../hooks/useLibraryContext';
 
 const styles = StyleSheet.create({
   form: {
@@ -34,10 +35,9 @@ async function postData(data) {
 
 export default function AddBook() {
   const [title, setTitle] = useState('');
+  const {invalidateBooksListCache} = useLibraryContext();
   const [mutate, {isLoading}] = useMutation(postData, {
-    onSuccess: function() {
-      queryCache.invalidateQueries('GET_BOOKS');
-    },
+    onSuccess: () => invalidateBooksListCache(),
   });
 
   async function handleSubmit() {
