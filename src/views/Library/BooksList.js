@@ -4,8 +4,8 @@ import BookListItem from '../../components/Book/BookListItem';
 import useLibraryContext from '../../hooks/useLibraryContext';
 
 export default function BooksList({navigation}) {
-  function handleOnPress() {
-    navigation.navigate('BookDetail');
+  function handleOnPress({bookId}) {
+    navigation.navigate('BookDetail', {bookId});
   }
 
   const {isSuccess, isLoading, books} = useLibraryContext();
@@ -14,7 +14,10 @@ export default function BooksList({navigation}) {
       <FlatList
         data={isSuccess ? books : []}
         renderItem={({item}) => (
-          <BookListItem book={item} onPress={handleOnPress} />
+          <BookListItem
+            book={item}
+            onPress={() => handleOnPress({bookId: item.id})}
+          />
         )}
         keyExtractor={item => item.id}
         ListHeaderComponent={

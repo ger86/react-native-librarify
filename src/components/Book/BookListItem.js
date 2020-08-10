@@ -11,9 +11,10 @@ const styles = StyleSheet.create({
     borderBottomColor: '#E0E0E0',
   },
   image: {
-    width: 50,
-    height: 50,
+    width: 75,
+    height: 75,
     marginRight: 10,
+    resizeMode: 'contain',
   },
   icon: {
     color: '#000',

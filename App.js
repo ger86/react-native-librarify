@@ -5,10 +5,13 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {LibraryContextProvider} from './src/contexts/LibraryContext';
 import BooksList from './src/views/Library/BooksList';
 import BookDetail from './src/views/Library/BookDetail';
+import BookEdit from './src/views/Library/BookEdit';
 import AddBook from './src/views/AddBook/AddBook';
+import SelectCategory from './src/views/Category/SelectCategory';
 
 const Tab = createBottomTabNavigator();
 
+const LibraryRootStack = createStackNavigator();
 const LibraryStack = createStackNavigator();
 
 function LibraryStackScreen() {
@@ -20,7 +23,24 @@ function LibraryStackScreen() {
         options={{title: 'Inicio'}}
       />
       <LibraryStack.Screen name="BookDetail" component={BookDetail} />
+      <LibraryStack.Screen name="BookEdit" component={BookEdit} />
     </LibraryStack.Navigator>
+  );
+}
+
+function LibraryRootStackScreen() {
+  return (
+    <LibraryRootStack.Navigator mode="modal">
+      <LibraryRootStack.Screen
+        name="LibraryStackScreen"
+        component={LibraryStackScreen}
+        options={{headerShown: false}}
+      />
+      <LibraryRootStack.Screen
+        name="SelectCategoryModal"
+        component={SelectCategory}
+      />
+    </LibraryRootStack.Navigator>
   );
 }
 
@@ -28,8 +48,16 @@ const App = () => (
   <LibraryContextProvider>
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="LibraryTab" component={LibraryStackScreen} />
-        <Tab.Screen name="AddBookTab" component={AddBook} />
+        <Tab.Screen
+          name="LibraryTab"
+          component={LibraryRootStackScreen}
+          options={{title: 'Librería'}}
+        />
+        <Tab.Screen
+          name="AddBookTab"
+          component={AddBook}
+          options={{title: 'Añadir libro'}}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   </LibraryContextProvider>
