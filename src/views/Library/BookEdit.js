@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   View,
@@ -11,7 +11,7 @@ import {
 import {useMutation} from 'react-query';
 import ImagePicker from 'react-native-image-picker';
 import useLibraryContext from '../../hooks/useLibraryContext';
-import useBook from '../../hooks/useBook';
+import useBook, {useInvalidateBook} from '../../hooks/useBook';
 
 const styles = StyleSheet.create({
   container: {
@@ -44,8 +44,8 @@ const options = {
   },
 };
 
-async function postData(data) {
-  const response = await fetch('http://127.0.0.1:8000/api/books', {
+async function postData({data, id}) {
+  const response = await fetch(`http://127.0.0.1:8000/api/books/${id}`, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -56,18 +56,75 @@ async function postData(data) {
   return json;
 }
 
+function prepareCategories({oldCategories, newCategories}) {
+  let indexForNewCategories = oldCategories.length;
+  const oldCategoriesIndexById = oldCategories.reduce(
+    (acc, oldCategory, index) => ({
+      ...acc,
+      [oldCategory.id]: index,
+    }),
+    {},
+  );
+  return newCategories.reduce((acc, category) => {
+    const indexForOldCategory = oldCategoriesIndexById[category.id];
+    if (indexForOldCategory !== undefined) {
+      return {
+        ...acc,
+        [indexForOldCategory]: category,
+      };
+    } else {
+      return {
+        ...acc,
+        [indexForNewCategories++]: category,
+      };
+    }
+  }, {});
+}
+
 export default function BookEdit({route, navigation}) {
   const {bookId} = route.params;
   const {data: book, isLoading} = useBook({bookId});
+  const invalidateBook = useInvalidateBook({bookId});
   const [title, setTitle] = useState(book?.title);
   const [image, setImage] = useState(book?.image);
+  const [categories, setCategories] = useState(
+    book?.categories.map(c => ({...c})),
+  );
   const {invalidateBooksListCache} = useLibraryContext();
-  const [mutate, {isPosting}] = useMutation(postData, {
-    onSuccess: () => invalidateBooksListCache(),
-  });
+  const [mutate, {isPosting}] = useMutation(postData);
+
+  useEffect(
+    function() {
+      if (route.params?.selectedCategories) {
+        setCategories(route.params?.selectedCategories);
+      }
+    },
+    [route.params],
+  );
 
   async function handleSubmit() {
-    await mutate({title, base64Image: image.uri});
+    let data = {
+      title,
+      categories: prepareCategories({
+        oldCategories: book.categories,
+        newCategories: categories,
+      }),
+    };
+    if (image.includes('data:image/jpeg;base64')) {
+      data = {
+        ...data,
+        base64Image: image,
+      };
+    }
+    await mutate(
+      {data, id: book.id},
+      {
+        onSuccess: function() {
+          invalidateBooksListCache();
+          invalidateBook();
+        },
+      },
+    );
   }
 
   function launchImagePicker() {
@@ -85,14 +142,9 @@ export default function BookEdit({route, navigation}) {
     });
   }
 
-  function handleSelectCategories(newCategories) {
-    console.log(newCategories);
-  }
-
   function handlePressEditCategories() {
     navigation.navigate('SelectCategoryModal', {
-      categories: book.categories,
-      onChange: handleSelectCategories,
+      selectedCategories: categories,
     });
   }
 
@@ -119,7 +171,7 @@ export default function BookEdit({route, navigation}) {
         />
       </View>
       <View>
-        {book.categories.map(category => (
+        {categories.map(category => (
           <Text key={`category--${category.id}`}>{category.name}</Text>
         ))}
         <Button onPress={handlePressEditCategories} title="Editar categorías" />

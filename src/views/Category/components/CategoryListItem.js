@@ -1,20 +1,15 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-ionicons';
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
+    height: 50,
     padding: 15,
     borderBottomWidth: 1,
     borderBottomColor: '#E0E0E0',
-  },
-  image: {
-    width: 75,
-    height: 75,
-    marginRight: 10,
-    resizeMode: 'contain',
   },
   icon: {
     color: '#000',
@@ -22,15 +17,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function BookListItem({book, onPress}) {
+export default function CategoryListItem({category, onPress, isSelected}) {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
-        {book.image && (
-          <Image source={{uri: book.image}} style={styles.image} />
-        )}
-        <Text>{book.title}</Text>
-        <Icon name="arrow-forward" style={styles.icon} />
+        <Text>{category.name}</Text>
+        {isSelected && <Icon name="checkmark" style={styles.icon} />}
       </View>
     </TouchableOpacity>
   );
