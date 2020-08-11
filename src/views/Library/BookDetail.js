@@ -36,6 +36,9 @@ export default function BookDetail({navigation, route}) {
   return (
     <View>
       <Text>Soy el libro {book.title}</Text>
+      {book.categories.map(category => (
+        <Text key={`category--${category.id}`}>{category.name}</Text>
+      ))}
     </View>
   );
 }
