@@ -1,10 +1,11 @@
 import {useQuery} from 'react-query';
+import apiFetch from 'src/services/apiFetch';
 
 const GET_CATEGORIES = 'GET_CATEGORIES';
 
 export default function useBook() {
   async function fetchCategories() {
-    const response = await fetch('http://127.0.0.1:8000/api/categories');
+    const response = await apiFetch('/categories');
     const json = await response.json();
     return json;
   }

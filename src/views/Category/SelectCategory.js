@@ -8,7 +8,10 @@ function isCategorySelected({selectedCategories, category}) {
 }
 
 export default function SelectCategory({navigation, route}) {
-  const {selectedCategories: selectedCategoriesProps} = route.params;
+  const {
+    selectedCategories: selectedCategoriesProps,
+    fromScreen,
+  } = route.params;
   const [selectedCategories, setSelectedCategories] = useState(
     selectedCategoriesProps.map(c => ({...c})),
   );
@@ -19,7 +22,7 @@ export default function SelectCategory({navigation, route}) {
       headerLeft: () => (
         <Button
           onPress={() =>
-            navigation.navigate('BookEdit', {
+            navigation.navigate(fromScreen, {
               selectedCategories,
             })
           }

@@ -1,7 +1,7 @@
 import React from 'react';
 import {FlatList, Text, View} from 'react-native';
-import BookListItem from '../../components/Book/BookListItem';
-import useLibraryContext from '../../hooks/useLibraryContext';
+import BookListItem from 'src/components/Book/BookListItem';
+import useLibraryContext from 'src/hooks/useLibraryContext';
 
 export default function BooksList({navigation}) {
   function handleOnPress({bookId}) {

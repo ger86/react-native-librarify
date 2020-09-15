@@ -8,6 +8,12 @@ import BookDetail from './src/views/Library/BookDetail';
 import BookEdit from './src/views/Library/BookEdit';
 import AddBook from './src/views/AddBook/AddBook';
 import SelectCategory from './src/views/Category/SelectCategory';
+import {
+  ADD_BOOK,
+  BOOK_DETAIL,
+  BOOK_EDIT,
+  SELECT_CATEGORY_MODAL,
+} from 'src/consts/screens';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,8 +28,8 @@ function LibraryStackScreen() {
         component={BooksList}
         options={{title: 'Inicio'}}
       />
-      <LibraryStack.Screen name="BookDetail" component={BookDetail} />
-      <LibraryStack.Screen name="BookEdit" component={BookEdit} />
+      <LibraryStack.Screen name={BOOK_DETAIL} component={BookDetail} />
+      <LibraryStack.Screen name={BOOK_EDIT} component={BookEdit} />
     </LibraryStack.Navigator>
   );
 }
@@ -37,7 +43,35 @@ function LibraryRootStackScreen() {
         options={{headerShown: false}}
       />
       <LibraryRootStack.Screen
-        name="SelectCategoryModal"
+        name={SELECT_CATEGORY_MODAL}
+        component={SelectCategory}
+      />
+    </LibraryRootStack.Navigator>
+  );
+}
+
+function AddBookStackScreen() {
+  return (
+    <LibraryStack.Navigator>
+      <LibraryStack.Screen
+        name={ADD_BOOK}
+        component={AddBook}
+        options={{title: 'Añadir libro'}}
+      />
+    </LibraryStack.Navigator>
+  );
+}
+
+function AddBookRootStackScreen() {
+  return (
+    <LibraryRootStack.Navigator mode="modal">
+      <LibraryRootStack.Screen
+        name="AddBookStackScreen"
+        component={AddBookStackScreen}
+        options={{headerShown: false}}
+      />
+      <LibraryRootStack.Screen
+        name={SELECT_CATEGORY_MODAL}
         component={SelectCategory}
       />
     </LibraryRootStack.Navigator>
@@ -55,7 +89,7 @@ const App = () => (
         />
         <Tab.Screen
           name="AddBookTab"
-          component={AddBook}
+          component={AddBookRootStackScreen}
           options={{title: 'Añadir libro'}}
         />
       </Tab.Navigator>

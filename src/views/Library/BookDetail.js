@@ -1,11 +1,10 @@
 import React, {useLayoutEffect} from 'react';
 import {ActivityIndicator, Button, Text, View} from 'react-native';
-import useBook from '../../hooks/useBook';
+import useBook from 'src/hooks/useBook';
 
 export default function BookDetail({navigation, route}) {
   const {bookId} = route.params;
   const {data: book, isLoading, isSuccess} = useBook({bookId});
-
   useLayoutEffect(function() {
     if (isSuccess) {
       navigation.setOptions({
