@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Image, TextInput, Button, StyleSheet, Text} from 'react-native';
 import {useMutation} from 'react-query';
 import ImagePicker from 'react-native-image-picker';
+import {SELECT_CATEGORY_MODAL, SELECT_CATEGORY} from 'src/consts/screens';
 import apiFetch from 'src/services/apiFetch';
 
 const styles = StyleSheet.create({
@@ -131,9 +132,12 @@ export default function BookForm({
   }
 
   function handlePressEditCategories() {
-    navigation.navigate('SelectCategoryModal', {
-      selectedCategories: categories,
-      fromScreen,
+    navigation.navigate(SELECT_CATEGORY_MODAL, {
+      screen: SELECT_CATEGORY,
+      params: {
+        selectedCategories: categories,
+        fromScreen,
+      },
     });
   }
 

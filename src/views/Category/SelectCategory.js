@@ -1,6 +1,7 @@
 import React, {useLayoutEffect, useState} from 'react';
 import {ActivityIndicator, Button, FlatList, Text, View} from 'react-native';
-import useCategories from '../../hooks/useCategories';
+import {CREATE_CATEGORY} from 'src/consts/screens';
+import useCategories from 'src/hooks/useCategories';
 import CategoryListItem from './components/CategoryListItem';
 
 function isCategorySelected({selectedCategories, category}) {
@@ -27,6 +28,12 @@ export default function SelectCategory({navigation, route}) {
             })
           }
           title="Cerrar"
+        />
+      ),
+      headerRight: () => (
+        <Button
+          onPress={() => navigation.navigate(CREATE_CATEGORY)}
+          title="Crear"
         />
       ),
       title: 'Seleccionar categorías',

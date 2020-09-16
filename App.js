@@ -8,17 +8,37 @@ import BookDetail from './src/views/Library/BookDetail';
 import BookEdit from './src/views/Library/BookEdit';
 import AddBook from './src/views/AddBook/AddBook';
 import SelectCategory from './src/views/Category/SelectCategory';
+import CreateCategory from './src/views/Category/CreateCategory';
 import {
   ADD_BOOK,
   BOOK_DETAIL,
   BOOK_EDIT,
   SELECT_CATEGORY_MODAL,
+  SELECT_CATEGORY,
+  CREATE_CATEGORY,
 } from 'src/consts/screens';
 
 const Tab = createBottomTabNavigator();
 
 const LibraryRootStack = createStackNavigator();
 const LibraryStack = createStackNavigator();
+const SelectCategoryStack = createStackNavigator();
+
+function SelectCategoryStackScreen() {
+  return (
+    <SelectCategoryStack.Navigator>
+      <SelectCategoryStack.Screen
+        name={SELECT_CATEGORY}
+        component={SelectCategory}
+        options={{title: 'Seleccionar categoría'}}
+      />
+      <SelectCategoryStack.Screen
+        name={CREATE_CATEGORY}
+        component={CreateCategory}
+      />
+    </SelectCategoryStack.Navigator>
+  );
+}
 
 function LibraryStackScreen() {
   return (
@@ -44,7 +64,8 @@ function LibraryRootStackScreen() {
       />
       <LibraryRootStack.Screen
         name={SELECT_CATEGORY_MODAL}
-        component={SelectCategory}
+        component={SelectCategoryStackScreen}
+        options={{headerShown: false}}
       />
     </LibraryRootStack.Navigator>
   );
@@ -72,7 +93,8 @@ function AddBookRootStackScreen() {
       />
       <LibraryRootStack.Screen
         name={SELECT_CATEGORY_MODAL}
-        component={SelectCategory}
+        component={SelectCategoryStackScreen}
+        options={{headerShown: false}}
       />
     </LibraryRootStack.Navigator>
   );
