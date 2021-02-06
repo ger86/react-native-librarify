@@ -8,7 +8,7 @@ import BookEdit from 'src/views/Library/BookEdit';
 import AddBook from 'src/views/AddBook/AddBook';
 import SelectCategory from 'src/views/Category/SelectCategory';
 import CreateCategory from 'src/views/Category/CreateCategory';
-import Logout from 'src/views/Logout/Logout';
+import Profile from 'src/views/Profile/Profile';
 import {
   ADD_BOOK,
   BOOK_DETAIL,
@@ -114,9 +114,9 @@ export default () => (
         options={{title: 'Añadir libro'}}
       />
       <Tab.Screen
-        name="LogoutTab"
-        component={Logout}
-        options={{title: 'Cerrar sesión'}}
+        name="ProfileTab"
+        component={Profile}
+        options={{title: 'Perfil'}}
       />
     </Tab.Navigator>
   </LibraryContextProvider>

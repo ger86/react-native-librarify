@@ -12,9 +12,9 @@
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.13.3",
     "@react-native-community/masked-view": "^0.1.9",
-    "@react-navigation/bottom-tabs": "^5.6.1",
-    "@react-navigation/native": "^5.1.6",
-    "@react-navigation/stack": "^5.2.11",
+    "@react-navigation/bottom-tabs": "5.11.*",
+    "@react-navigation/native": "5.9.*",
+    "@react-navigation/stack": "5.14.*",
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-gesture-handler": "^1.6.1",
