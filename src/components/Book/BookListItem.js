@@ -1,6 +1,7 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import Icon from 'react-native-ionicons';
+import {Image, StyleSheet, View, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
+import Text from 'src/components/ui/Text';
 
 const styles = StyleSheet.create({
   container: {

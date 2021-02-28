@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Image, TextInput, Button, StyleSheet, Text} from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 import {useMutation} from 'react-query';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {
@@ -9,6 +9,9 @@ import {
   SELECT_AUTHOR,
 } from 'src/consts/screens';
 import apiFetch from 'src/services/apiFetch';
+import Text from 'src/components/ui/Text';
+import Button from 'src/components/ui/Button';
+import TextInput from 'src/components/ui/TextInput';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,6 +32,9 @@ const styles = StyleSheet.create({
     height: 150,
     marginRight: 10,
     marginBottom: 10,
+  },
+  formGroup: {
+    marginBottom: 16,
   },
 });
 
@@ -87,7 +93,7 @@ export default function BookForm({
   const [authors, setAuthors] = useState(
     book ? book.authors.map(a => ({...a})) : [],
   );
-  const [mutate, {isPosting}] = useMutation(postData);
+  const [mutate, {isLoading}] = useMutation(postData);
 
   useEffect(
     function() {
@@ -173,30 +179,53 @@ export default function BookForm({
       <View style={styles.formRowOne}>
         <View>
           {image && <Image source={{uri: image}} style={styles.image} />}
-          <Button onPress={launchImagePicker} title="Seleccionar carátula" />
+          <Button
+            type="outline"
+            onPress={launchImagePicker}
+            title="Seleccionar carátula"
+          />
         </View>
+      </View>
+      <View style={styles.formGroup}>
         <TextInput
+          label="Título"
           onChangeText={text => setTitle(text)}
           style={styles.textInput}
           value={title}
         />
       </View>
-      <View>
+      <View style={styles.formGroup}>
+        <Text h4>Categorías</Text>
         {categories.map(category => (
           <Text key={`category--${category.id}`}>{category.name}</Text>
         ))}
-        <Button onPress={handlePressEditCategories} title="Editar categorías" />
+        <Button
+          type="outline"
+          onPress={handlePressEditCategories}
+          title="Editar categorías"
+        />
       </View>
-      <View>
+      <View style={styles.formGroup}>
+        <Text h4>Autores</Text>
         {authors.map(author => (
           <Text key={`author--${author.id}`}>{author.name}</Text>
         ))}
-        <Button onPress={handlePressEditAuthors} title="Editar autores" />
+        <Button
+          type="outline"
+          onPress={handlePressEditAuthors}
+          title="Editar autores"
+        />
       </View>
-      <Button onPress={handleSubmit} title={isEditing ? 'Editar' : 'Añadir'} />
-      {isPosting && (
-        <Text>{isEditing ? 'Editando libro...' : 'Añadiendo libro...'}</Text>
-      )}
+      <View>
+        <Button
+          disabled={isLoading}
+          onPress={handleSubmit}
+          title={isEditing ? 'Editar' : 'Añadir'}
+        />
+        {isLoading && (
+          <Text>{isEditing ? 'Editando libro...' : 'Añadiendo libro...'}</Text>
+        )}
+      </View>
     </View>
   );
 }

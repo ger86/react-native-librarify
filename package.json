@@ -17,12 +17,13 @@
     "@react-navigation/stack": "5.14.*",
     "react": "16.11.0",
     "react-native": "0.63.*",
+    "react-native-elements": "^3.2.0",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-image-picker": "3.2.*",
-    "react-native-ionicons": "^4.x",
     "react-native-reanimated": "^1.8.0",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.5.0",
+    "react-native-vector-icons": "^8.1.0",
     "react-query": "^2.4.6"
   },
   "devDependencies": {
