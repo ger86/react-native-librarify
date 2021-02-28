@@ -8,6 +8,8 @@ import BookEdit from 'src/views/Library/BookEdit';
 import AddBook from 'src/views/AddBook/AddBook';
 import SelectCategory from 'src/views/Category/SelectCategory';
 import CreateCategory from 'src/views/Category/CreateCategory';
+import SelectAuthor from 'src/views/Author/SelectAuthor';
+import CreateAuthor from 'src/views/Author/CreateAuthor';
 import Profile from 'src/views/Profile/Profile';
 import {
   ADD_BOOK,
@@ -16,6 +18,9 @@ import {
   SELECT_CATEGORY_MODAL,
   SELECT_CATEGORY,
   CREATE_CATEGORY,
+  SELECT_AUTHOR_MODAL,
+  SELECT_AUTHOR,
+  CREATE_AUTHOR,
 } from 'src/consts/screens';
 
 const Tab = createBottomTabNavigator();
@@ -23,6 +28,7 @@ const Tab = createBottomTabNavigator();
 const LibraryRootStack = createStackNavigator();
 const LibraryStack = createStackNavigator();
 const SelectCategoryStack = createStackNavigator();
+const SelectAuthorStack = createStackNavigator();
 
 function SelectCategoryStackScreen() {
   return (
@@ -37,6 +43,19 @@ function SelectCategoryStackScreen() {
         component={CreateCategory}
       />
     </SelectCategoryStack.Navigator>
+  );
+}
+
+function SelectAuthorStackScreen() {
+  return (
+    <SelectAuthorStack.Navigator>
+      <SelectAuthorStack.Screen
+        name={SELECT_AUTHOR}
+        component={SelectAuthor}
+        options={{title: 'Seleccionar autor'}}
+      />
+      <SelectAuthorStack.Screen name={CREATE_AUTHOR} component={CreateAuthor} />
+    </SelectAuthorStack.Navigator>
   );
 }
 
@@ -67,6 +86,11 @@ function LibraryRootStackScreen() {
         component={SelectCategoryStackScreen}
         options={{headerShown: false}}
       />
+      <LibraryRootStack.Screen
+        name={SELECT_AUTHOR_MODAL}
+        component={SelectAuthorStackScreen}
+        options={{headerShown: false}}
+      />
     </LibraryRootStack.Navigator>
   );
 }
@@ -94,6 +118,11 @@ function AddBookRootStackScreen() {
       <LibraryRootStack.Screen
         name={SELECT_CATEGORY_MODAL}
         component={SelectCategoryStackScreen}
+        options={{headerShown: false}}
+      />
+      <LibraryRootStack.Screen
+        name={SELECT_AUTHOR_MODAL}
+        component={SelectAuthorStackScreen}
         options={{headerShown: false}}
       />
     </LibraryRootStack.Navigator>

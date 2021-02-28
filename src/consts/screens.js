@@ -5,4 +5,7 @@ export const BOOK_EDIT = 'BookEdit';
 export const SELECT_CATEGORY_MODAL = 'SelectCategoryModal';
 export const SELECT_CATEGORY = 'SelectCategory';
 export const CREATE_CATEGORY = 'CreateCategory';
+export const SELECT_AUTHOR_MODAL = 'SelectAuthorModal';
+export const SELECT_AUTHOR = 'SelectAuthor';
+export const CREATE_AUTHOR = 'CreateAuthor';
 export const ADD_BOOK = 'AddBook';

@@ -19,8 +19,8 @@
 		2DCD954D1E0B4F2C00145EB5 /* LibrarifyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* LibrarifyTests.m */; };
 		6D35F56FF701D132D0E60CEC /* libPods-Librarify-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77292A75405BC43B7E384EC3 /* libPods-Librarify-tvOS.a */; };
 		797445DD054F346044C0B370 /* libPods-Librarify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C613F8300C8B0890C0EA601 /* libPods-Librarify.a */; };
-		E17EEDA90ABC43F80AB6F937 /* libPods-Librarify-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F42F8092D5752AD8C32F3D7C /* libPods-Librarify-tvOSTests.a */; };
 		CFE4F4CEBF2849D5A080BB5B /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35EC8602716D43A8B59C5EC8 /* Ionicons.ttf */; };
+		E17EEDA90ABC43F80AB6F937 /* libPods-Librarify-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F42F8092D5752AD8C32F3D7C /* libPods-Librarify-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +55,7 @@
 		1D68F91BAB1E5A2B64A61BAC /* libPods-Librarify-LibrarifyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Librarify-LibrarifyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E47B1E0B4A5D006451C7 /* Librarify-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Librarify-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Librarify-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Librarify-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35EC8602716D43A8B59C5EC8 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-ionicons/fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		585FE75E00D941B839E99A0A /* Pods-Librarify-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Librarify-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Librarify-tvOSTests/Pods-Librarify-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C613F8300C8B0890C0EA601 /* libPods-Librarify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Librarify.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77292A75405BC43B7E384EC3 /* libPods-Librarify-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Librarify-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,7 +69,6 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F42F8092D5752AD8C32F3D7C /* libPods-Librarify-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Librarify-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD538EFB7C2E2DD9AE0F1479 /* Pods-Librarify-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Librarify-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Librarify-tvOS/Pods-Librarify-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		35EC8602716D43A8B59C5EC8 /* Ionicons.ttf */ = {isa = PBXFileReference; name = "Ionicons.ttf"; path = "../node_modules/react-native-ionicons/fonts/Ionicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,13 +202,13 @@
 			sourceTree = "<group>";
 		};
 		D36189553CA14432B2DFE7C3 /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				35EC8602716D43A8B59C5EC8 /* Ionicons.ttf */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
 			path = "";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -221,6 +221,7 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				918D20FD48C049695F8A895C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -242,6 +243,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				D5FB19C177515E57778B7F72 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -488,6 +490,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		918D20FD48C049695F8A895C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Librarify-LibrarifyTests/Pods-Librarify-LibrarifyTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Librarify-LibrarifyTests/Pods-Librarify-LibrarifyTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5FB19C177515E57778B7F72 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Librarify/Pods-Librarify-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Librarify/Pods-Librarify-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {

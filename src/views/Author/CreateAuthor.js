@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, TextInput, Button, StyleSheet, Text} from 'react-native';
 import {useMutation} from 'react-query';
-import {useInvalidateCategories} from 'src/hooks/useCategories';
+import {useInvalidateAuthors} from 'src/hooks/useAuthors';
 import apiFetch from 'src/services/apiFetch';
 
 const styles = StyleSheet.create({
@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
   },
 });
 
-async function postCategory({data, id}) {
-  const path = '/categories';
+async function postAuthor({data, id}) {
+  const path = '/authors';
   const response = await apiFetch(path, {
     method: 'POST',
     body: JSON.stringify(data),
@@ -30,10 +30,10 @@ async function postCategory({data, id}) {
   return json;
 }
 
-export default function CreateCategory({route, navigation}) {
+export default function CreateAuthor({route, navigation}) {
   const [name, setName] = useState('');
-  const invalidateCategoriesList = useInvalidateCategories();
-  const [mutate, {isPosting}] = useMutation(postCategory);
+  const invalidateAuthorsList = useInvalidateAuthors();
+  const [mutate, {isPosting}] = useMutation(postAuthor);
 
   async function handleSubmit() {
     let data = {
@@ -43,7 +43,7 @@ export default function CreateCategory({route, navigation}) {
       {data},
       {
         onSuccess: function() {
-          invalidateCategoriesList();
+          invalidateAuthorsList();
           navigation.goBack();
         },
       },
@@ -59,8 +59,8 @@ export default function CreateCategory({route, navigation}) {
           value={name}
         />
       </View>
-      <Button onPress={handleSubmit} title="Crear Categoría" />
-      {isPosting && <Text>Creando categoría</Text>}
+      <Button onPress={handleSubmit} title="Crear Autor" />
+      {isPosting && <Text>Creando autor</Text>}
     </View>
   );
 }

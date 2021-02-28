@@ -1,8 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {View, Image, TextInput, Button, StyleSheet, Text} from 'react-native';
 import {useMutation} from 'react-query';
-import ImagePicker from 'react-native-image-picker';
-import {SELECT_CATEGORY_MODAL, SELECT_CATEGORY} from 'src/consts/screens';
+import {launchImageLibrary} from 'react-native-image-picker';
+import {
+  SELECT_CATEGORY_MODAL,
+  SELECT_CATEGORY,
+  SELECT_AUTHOR_MODAL,
+  SELECT_AUTHOR,
+} from 'src/consts/screens';
 import apiFetch from 'src/services/apiFetch';
 
 const styles = StyleSheet.create({
@@ -22,18 +27,14 @@ const styles = StyleSheet.create({
   image: {
     width: 150,
     height: 150,
-    resizeMode: 'contain',
     marginRight: 10,
     marginBottom: 10,
   },
 });
 
 const options = {
-  title: 'Selecciona la carátula de tu libro',
-  storageOptions: {
-    skipBackup: true,
-    path: 'images',
-  },
+  mediaType: 'photo',
+  includeBase64: true,
 };
 
 async function postData({data, id}) {
@@ -46,26 +47,26 @@ async function postData({data, id}) {
   return json;
 }
 
-function prepareCategories({oldCategories, newCategories}) {
-  let indexForNewCategories = oldCategories.length;
-  const oldCategoriesIndexById = oldCategories.reduce(
-    (acc, oldCategory, index) => ({
+function prepareList({oldElements, newElements}) {
+  let indexForNewElements = oldElements.length;
+  const oldElementsIndexById = oldElements.reduce(
+    (acc, oldElement, index) => ({
       ...acc,
-      [oldCategory.id]: index,
+      [oldElement.id]: index,
     }),
     {},
   );
-  return newCategories.reduce((acc, category) => {
-    const indexForOldCategory = oldCategoriesIndexById[category.id];
-    if (indexForOldCategory !== undefined) {
+  return newElements.reduce((acc, element) => {
+    const indexOfOldElement = oldElementsIndexById[element.id];
+    if (indexOfOldElement !== undefined) {
       return {
         ...acc,
-        [indexForOldCategory]: category,
+        [indexOfOldElement]: element,
       };
     } else {
       return {
         ...acc,
-        [indexForNewCategories++]: category,
+        [indexForNewElements++]: element,
       };
     }
   }, {});
@@ -83,6 +84,9 @@ export default function BookForm({
   const [categories, setCategories] = useState(
     book ? book.categories.map(c => ({...c})) : [],
   );
+  const [authors, setAuthors] = useState(
+    book ? book.authors.map(a => ({...a})) : [],
+  );
   const [mutate, {isPosting}] = useMutation(postData);
 
   useEffect(
@@ -94,12 +98,25 @@ export default function BookForm({
     [route.params],
   );
 
+  useEffect(
+    function() {
+      if (route.params?.selectedAuthors) {
+        setAuthors(route.params?.selectedAuthors);
+      }
+    },
+    [route.params],
+  );
+
   async function handleSubmit() {
     let data = {
       title,
-      categories: prepareCategories({
-        oldCategories: book ? book.categories : [],
-        newCategories: categories,
+      categories: prepareList({
+        oldElements: book ? book.categories : [],
+        newElements: categories,
+      }),
+      authors: prepareList({
+        oldElements: book ? book.authors : [],
+        newElements: authors,
       }),
     };
     if (image.includes('data:image/jpeg;base64')) {
@@ -117,16 +134,15 @@ export default function BookForm({
   }
 
   function launchImagePicker() {
-    ImagePicker.showImagePicker(options, response => {
+    launchImageLibrary(options, response => {
       console.log('Response = ', response);
 
       if (response.didCancel) {
         console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
+      } else if (response.errorCode) {
+        console.log('ImagePicker Error: ', response.errorCode);
       } else {
-        console.log(response.data);
-        setImage(`data:image/jpeg;base64,${response.data}`);
+        setImage(`data:image/jpeg;base64,${response.base64}`);
       }
     });
   }
@@ -141,8 +157,17 @@ export default function BookForm({
     });
   }
 
-  const isEditing = Boolean(book?.id);
+  function handlePressEditAuthors() {
+    navigation.navigate(SELECT_AUTHOR_MODAL, {
+      screen: SELECT_AUTHOR,
+      params: {
+        selectedAuthors: authors,
+        fromScreen,
+      },
+    });
+  }
 
+  const isEditing = Boolean(book?.id);
   return (
     <View style={styles.container}>
       <View style={styles.formRowOne}>
@@ -161,6 +186,12 @@ export default function BookForm({
           <Text key={`category--${category.id}`}>{category.name}</Text>
         ))}
         <Button onPress={handlePressEditCategories} title="Editar categorías" />
+      </View>
+      <View>
+        {authors.map(author => (
+          <Text key={`author--${author.id}`}>{author.name}</Text>
+        ))}
+        <Button onPress={handlePressEditAuthors} title="Editar autores" />
       </View>
       <Button onPress={handleSubmit} title={isEditing ? 'Editar' : 'Añadir'} />
       {isPosting && (

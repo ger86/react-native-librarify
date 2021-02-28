@@ -29,7 +29,14 @@ export default function BookListItem({book, onPress}) {
         {book.image && (
           <Image source={{uri: book.image}} style={styles.image} />
         )}
-        <Text>{book.title}</Text>
+        <View>
+          <Text>{book.title}</Text>
+          <View>
+            {book.authors.map(author => (
+              <Text key={author.id}>{author.name}</Text>
+            ))}
+          </View>
+        </View>
         <Icon name="arrow-forward" style={styles.icon} />
       </View>
     </TouchableOpacity>
