@@ -16,7 +16,7 @@
     "@react-navigation/native": "5.9.*",
     "@react-navigation/stack": "5.14.*",
     "react": "16.11.0",
-    "react-native": "0.63.*",
+    "react-native": "0.64.*",
     "react-native-elements": "^3.2.0",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-image-picker": "3.2.*",
